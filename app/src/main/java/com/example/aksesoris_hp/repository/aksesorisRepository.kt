@@ -1,18 +1,18 @@
 package com.example.aksesoris_hp.repository
 
-import com.example.aksesoris_hp.dao.aksesorisDao
-import com.example.aksesoris_hp.model.aksesoris
+import com.example.aksesoris_hp.dao.accessorisDao
+import com.example.aksesoris_hp.model.accessoris
 import kotlinx.coroutines.flow.Flow
 
-class aksesorisRepository(private val aksesorisDao: aksesorisDao) {
-    val allAksesoris:Flow<List<aksesoris>> = aksesorisDao.getALLaksesoris()
-    suspend fun insertAksesoris(aksesoris: aksesoris){
-        aksesorisDao.insertAksesoris(aksesoris)
+class aksesorisRepository(private val accessorisDao: accessorisDao) {
+    val allAksesoris:Flow<List<accessoris>> = accessorisDao.getALLaksesoris()
+    suspend fun insertAksesoris(accessoris: accessoris){
+        accessorisDao.insertAksesoris(accessoris)
     }
-    suspend fun deleteAksesoris(aksesoris: aksesoris){
-        aksesorisDao.deleteAksesoris(aksesoris)
+    suspend fun deleteAksesoris(accessoris: accessoris){
+        accessorisDao.deleteAksesoris(accessoris)
     }
-    suspend fun updateAksesoris(aksesoris: aksesoris){
-        aksesorisDao.updateAksesoris(aksesoris)
+    suspend fun updateAksesoris(accessoris: accessoris){
+        accessorisDao.updateAksesoris(accessoris)
     }
 }
