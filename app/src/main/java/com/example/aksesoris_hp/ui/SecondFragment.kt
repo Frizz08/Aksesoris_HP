@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.aksesoris_hp.R
 import com.example.aksesoris_hp.application.AccessorisApp
 import com.example.aksesoris_hp.databinding.FragmentSecondBinding
@@ -25,6 +26,8 @@ class SecondFragment : Fragment() {
     private val accessorisViewModel: accessorisViewModel by viewModels{
         AccessorisViewModelFactory((applicationContext as AccessorisApp).repository)
     }
+    private val args: SecondFragmentArgs by navArgs()
+    private var accessoris:accessoris?=null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -44,12 +47,24 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        accessoris= args.accessoris
+        //pengecekan jika accessoris null maka tampilan default bertambah
+        //jika accessoris tampilan tidak null tampilan sedikit berubah ada tombol hapus
+        if (accessoris!=null){
+            binding.deleteButton.visibility=View.VISIBLE
+            binding.saveButton.text="Ubah"
+        }
         val name=binding.namaEditTextText.text
         val address=binding.alamatEditTextText2.text
         binding.saveButton.setOnClickListener {
             val accessoris=accessoris(0, name.toString(), address.toString())
             accessorisViewModel.insert(accessoris)
             findNavController().popBackStack() //untuk dismiss halaman ini
+        }
+
+        binding.deleteButton.setOnClickListener {
+            accessoris?.let { accessorisViewModel.delete(it) }
+            findNavController().popBackStack()
         }
     }
 
