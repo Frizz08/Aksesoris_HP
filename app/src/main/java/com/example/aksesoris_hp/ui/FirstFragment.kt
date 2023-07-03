@@ -1,11 +1,15 @@
-package com.example.aksesoris_hp
+package com.example.aksesoris_hp.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.aksesoris_hp.R
 import com.example.aksesoris_hp.databinding.FragmentFirstBinding
 
 /**
@@ -34,6 +38,10 @@ class FirstFragment : Fragment() {
 
         binding.addFAB.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+        binding.addFAB.setOnClickListener {
+            val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment()
+            findNavController().navigate(action)
         }
     }
 
